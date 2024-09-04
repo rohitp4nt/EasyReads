@@ -1,0 +1,25 @@
+const JWT = require('jsonwebtoken');
+
+const secret = "rohit1234";
+
+function createTokensForUser(user){
+    const payload = {
+        fullName:user.fullName,
+        _id: user._id,
+        email: user.email,
+        profileImgURL: user.profileImgURL,
+        role: user.role,
+    };
+    const token = JWT.sign(payload, secret);
+    return token;
+}
+
+function validateToken(token){
+    const payload = JWT.verify(token,secret);
+    return payload;
+}
+
+module.exports ={
+    createTokensForUser,
+    validateToken,
+}

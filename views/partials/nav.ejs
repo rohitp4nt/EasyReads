@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogify Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<nav id="navbar" class="fixed top-0 w-full z-50 bg-white shadow">
+    <div class="container mx-auto flex justify-between items-center p-4">
+        <a href="/">
+            <img src="/images/es.png" alt="Blogify Logo" class="h-16 w-56" />
+        </a>
+        <div class="flex items-center md:hidden">
+            <button id="mobile-menu-toggle" class="text-gray-500 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <ul id="mobile-menu" class="hidden md:flex space-x-8">
+            <li>
+                <a href="/" class="transition duration-300 ease-in-out 
+                    <%= currentPage === 'home' ? 'font-bold text-white bg-black border rounded-full py-2 px-4' : 'text-gray-500 hover:text-black font-bold hover:bg-gray-200 rounded-full py-2 px-4' %>">
+                    Home
+                </a>
+            </li>
+            <% if (locals.user) { %>
+                <li>
+                    <a href="/blog/add-new" class="transition duration-300 ease-in-out 
+                        <%= currentPage === 'addBlog' ? 'font-bold text-white bg-black border rounded-full py-2 px-4' : 'text-gray-500 hover:text-black font-bold hover:bg-gray-200 rounded-full py-2 px-4' %>">
+                        Add Blog
+                    </a>
+                </li>
+                <%- include('dropdown.ejs') %>
+                <li>
+                    <span class="text-gray-700">Welcome, <%= user.fullName %></span>
+                </li>
+            <% } else { %>
+                <li>
+                    <a href="/user/signup" class="transition duration-300 ease-in-out 
+                        <%= currentPage === 'signup' ? 'font-bold text-white bg-black border rounded-full py-2 px-4' : 'text-gray-500 hover:text-black font-bold hover:bg-gray-200 rounded-full py-2 px-4' %>">
+                        Create account
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/signin" class="transition duration-300 ease-in-out 
+                        <%= currentPage === 'signin' ? 'font-bold text-white bg-black border rounded-full py-2 px-4' : 'text-gray-500 hover:text-black font-bold hover:bg-gray-200 rounded-full py-2 px-4' %>">
+                        Sign In
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu-content" class="md:hidden hidden bg-white shadow-md">
+    <ul class="flex flex-col space-y-2 p-4">
+        <li>
+            <a href="/" class="block transition duration-300 ease-in-out text-gray-500 hover:text-black font-bold py-2 px-4">
+                Home
+            </a>
+        </li>
+        <% if (locals.user) { %>
+            <li>
+                <a href="/blog/add-new" class="block transition duration-300 ease-in-out text-gray-500 hover:text-black font-bold py-2 px-4">
+                    Add Blog
+                </a>
+            </li>
+            <li>
+                <span class="block text-gray-700">Welcome, <%= user.fullName %></span>
+            </li>
+        <% } else { %>
+            <li>
+                <a href="/user/signup" class="block transition duration-300 ease-in-out text-gray-500 hover:text-black font-bold py-2 px-4">
+                    Create account
+                </a>
+            </li>
+            <li>
+                <a href="/user/signin" class="block transition duration-300 ease-in-out text-gray-500 hover:text-black font-bold py-2 px-4">
+                    Sign In
+                </a>
+            </li>
+        <% } %>
+    </ul>
+</div>
+
+<script>
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuContent = document.getElementById('mobile-menu-content');
+
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuContent.classList.toggle('hidden');
+        
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<div class="relative inline-block text-left">
+    <!-- Dropdown Trigger -->
+    <span class="text-gray-500 font-bold cursor-pointer inline-flex items-center">
+       More
+        <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+    </span>
+
+    <!-- Dropdown Menu -->
+    <div class="absolute z-10 hidden bg-white divide-y divide-gray-100 w-44">
+        <ul class="py-2 text-sm">
+            <li>
+                <a href="/user/logout" class="block px-4 py-2 text-gray-500 hover:text-black">Log out</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 text-gray-500 hover:text-black">Settings</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<style>
+   
+    .relative:hover .hidden {
+        display: block;
+    }
+
+    
+
+    .absolute ul {
+        padding: 0; /* Remove padding from ul */
+        margin: 0; /* Remove margin from ul */
+    }
+
+    .absolute li {
+        list-style-type: none; /* Remove bullet points from li */
+    }
+</style>

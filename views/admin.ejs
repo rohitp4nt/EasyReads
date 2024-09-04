@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body class="">
+    <%- include('./partials/nav.ejs', { currentPage: 'home' }) %>
+
+    <div class="bg-gray-100 h-screen flex items-center justify-center mt-20 md:10">
+        <div class="container mx-auto flex flex-col md:flex-row">
+            <!-- Left side: Image -->
+            <div class="w-full md:w-1/2 h-full">
+                <img src="/images/apple.jpg" alt="Image" class="w-full h-full object-cover">
+            </div>
+            <!-- Right side: Text -->
+            <div class="w-full md:w-1/2 h-full flex items-center p-8 bg-white">
+                <div>
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Write with <br> intelligent new <br> tools. Everywhere <br> words matter.</h1>
+                    <p class="text-base md:text-lg text-gray-600">
+                        Apple Intelligence powers new Writing Tools, which help you find just the right words virtually everywhere you write. With enhanced language capabilities, you can summarise an entire lecture in seconds, get the short version of a long group thread, and minimise unnecessary distractions with prioritised notifications.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-black h-screen flex flex-col md:flex-row">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center h-full">
+            <div class="w-full md:w-1/2 h-full flex items-center p-8">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">ChatGPT, seamlessly integrated</h1>
+                    <p class="text-base md:text-lg text-white">
+                        With ChatGPT from OpenAI integrated into Siri and Writing Tools, you get even more expertise when it might be helpful for you — no need to jump between tools. Siri can tap into ChatGPT for certain requests, including questions about photos or documents. And with Compose in Writing Tools, you can create and illustrate original content from scratch. You control when ChatGPT is used and will be asked before any of your information is shared. Anyone can access ChatGPT for free, without creating an account. ChatGPT subscribers can connect accounts to access paid features within these experiences.
+                    </p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 h-full">
+                <img src="/images/apple3.jpg" alt="Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-100 h-screen flex items-center justify-center">
+        <div class="container mx-auto flex flex-col md:flex-row">
+            <!-- Right side: Text -->
+            <div class="w-full md:w-1/2 h-full flex items-center p-8 bg-white">
+                <div>
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Delightful images <br> created just for you.</h1>
+                    <p class="text-base md:text-lg text-gray-600">
+                        Apple Intelligence enables delightful new ways to express yourself visually. Create fun, original images and brand-new Genmoji that are truly personal to you. Turn a rough sketch into a related image that complements your notes with Image Wand. And make a custom memory movie based on the description you provide.
+                    </p>
+                </div>
+            </div>
+            <!-- Left side: Image -->
+            <div class="w-full md:w-1/2 h-full">
+                <img src="/images/apple2.jpg" alt="Image" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

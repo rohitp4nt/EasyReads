@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title><%= blog.title %> - Blog</title>
+</head>
+
+<body class="mt-32 bg-gray-50 text-gray-900 font-sans ">
+
+    <%- include('./partials/nav.ejs', { currentPage: 'home' }) %>
+
+    <div class="container mx-auto mt-12 px-6 lg:px-8 max-w-4xl">
+        <h1 class="text-4xl lg:text-5xl font-extrabold mb-6">
+            <%= blog.title %>
+        </h1>
+
+        <div class="w-full h-[60vh] lg:h-[70vh] overflow-hidden rounded-lg shadow-lg mb-10">
+            <img src="<%= blog.coverImgURL %>" alt="Blog Cover Image" class="w-full h-full object-cover">
+        </div>
+
+        <div class="prose prose-lg max-w-none mb-12">
+            <pre class="whitespace-pre-wrap"><%= blog.body %></pre>
+        </div>
+
+        <div class="flex items-center bg-white p-4 rounded-lg shadow-md mb-8">
+            <img src="<%= blog.createdBy.profileImgURL %>" alt="Profile Image" class="w-14 h-14 rounded-full mr-4 shadow-sm">
+            <div class="text-lg font-semibold">
+                <%= blog.createdBy.fullName %>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+            <h2 class="text-2xl font-bold mb-4">Comments (<%= comments.length %>)</h2>
+            
+            <div class="space-y-6">
+                <% comments.forEach(comment => { %>
+                <div class="flex items-start space-x-4">
+                    <img src="<%= comment.createdBy.profileImgURL %>" alt="User Image" class="w-12 h-12 rounded-full">
+                    <div>
+                        <div class="font-semibold"><%= comment.createdBy.fullName %></div>
+                        <pre class="whitespace-pre-wrap mt-1 text-gray-800"><%= comment.content %></pre>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+
+            <% if (locals.user) { %>
+            <form action="/blog/comment/<%= blog._id %>" method="POST" class="mt-6">
+                <textarea 
+                    name="content" 
+                    placeholder="Write a comment..." 
+                    class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring focus:ring-blue-200"
+                    rows="3"
+                    required
+                ></textarea>
+                <button 
+                    type="submit" 
+                    class="mt-4 w-full bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                >
+                    Post Comment
+                </button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

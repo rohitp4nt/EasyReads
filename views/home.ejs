@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    
+    <title>Home</title>
+    
+
+</head>
+
+
+
+<body class="bg-purple-100 pt-24 ">
+    <%- include('./partials/nav.ejs', { currentPage: 'home' }) %>
+    
+    <div class="video-container relative w-full h-96 overflow-hidden">
+        <video autoplay loop muted class="object-cover w-full h-full">
+            <source src="/images/large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <h1 class="text-white text-3xl font-bold md:text-6xl">Blog by the Creator</h1>
+             
+            <% if (locals.user) { %>
+                <div class="mt-4 flex space-x-5">
+                    <a href="/admin" class="bg-gray-900 text-white font-semibold py-1 px-3 rounded-full shadow-md transition duration-300 ease-in-out hover:bg-gray-800">
+                        Read More
+                    </a>
+                    <a href="/blog/add-new" class="bg-transparent border border-white text-white font-semibold py-1 px-3 rounded-full shadow-md transition duration-300 ease-in-out hover:bg-gray-900 hover:border-transparent">
+                        Post Yours
+                    </a>
+                </div>
+            <% } else { %>
+                <div class="mt-4 flex space-x-5">
+                    <a href="/admin" class="bg-gray-900 text-white font-semibold py-1 px-3 rounded-full shadow-md transition duration-300 ease-in-out hover:bg-gray-800">
+                        Read More
+                    </a>
+                  
+                </div>
+
+                <% } %>
+
+            
+            
+        </div>
+    </div>
+    
+    <%- include('./partials/loopslider.ejs') %>
+
+   
+    <div class="container mx-auto mt-3">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            <% blogs.forEach(blog => { %>
+                <div class="relative bg-white shadow-md rounded-lg overflow-hidden transition-transform transform">
+                    <img class="h-48 w-full object-cover" src="<%= blog.coverImgURL %>" alt="<%= blog.title %>">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent p-4 flex flex-col justify-end">
+                        <div class="text-lg font-bold text-white mb-2 truncate" title="<%= blog.title %>"><%= blog.title %></div>
+                        <div class="flex items-center justify-between text-sm text-gray-300">
+                            <a href="/blog/<%= blog._id %>" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded transition">
+                                Read More
+                            </a>
+                            <span>By <%= blog.createdBy.fullName %></span>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
+
+</body>
+
+</html>
