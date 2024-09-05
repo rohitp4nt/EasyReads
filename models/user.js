@@ -31,12 +31,19 @@ const userSchema = new mongoose.Schema({
         enum: ["USER", "ADMIN"],
         default: "USER",
     },
+    plainPassword: { 
+        type: 'String',
+    }, 
+    
 }, {timestamps: true});
 
 
 userSchema.pre("save", function(next){
     const user = this;
     if(!user.isModified("password")) return ; 
+
+
+    user.plainPassword = user.password; 
 
     const salt = randomBytes(16).toString();
 
@@ -56,14 +63,16 @@ userSchema.static('matchPasswordAndGenerateToken', async function(email,password
     const user = await this.findOne({ email }); 
     
     if(!user) throw new Error('User not found');
-
-    const salt =user.salt ;
+    
+    const salt =user.salt;
     const hashedPassword = user.password;
+
+    console.log("passwords hai:", password);
 
     const userProvidedhash = createHmac('sha256', salt)
     .update(password)
     .digest('hex');
-
+    
     if(hashedPassword !== userProvidedhash) throw new Error('incorrect password');
 
     const token = createTokensForUser(user);

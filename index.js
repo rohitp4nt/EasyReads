@@ -28,7 +28,6 @@ app.use(checkForAuthenticationCookie("token"));
 app.get('/', async(req, res) => {
      const allBlogs = await Blog.find({}).populate("createdBy");; 
     
-     console.log(req.user);
 
      res.render('home', {
         user: req.user,
