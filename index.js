@@ -38,7 +38,9 @@ app.get('/', async(req, res) => {
 });
 
 app.get('/admin',(req, res) => {
-    return res.render('admin');
+    return res.render('admin' ,{
+        user: req.user,
+    });
 });
 
 app.use("/user", userRoute);
