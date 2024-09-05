@@ -16,7 +16,7 @@
         </h1>
 
         <div class="w-full h-[60vh] lg:h-[70vh] overflow-hidden rounded-lg shadow-lg mb-10">
-            <img src="<%= blog.coverImgURL %>" alt="Blog Cover Image" class="w-full h-full object-cover">
+            <img src="data:image/png;base64,<%=  blog.coverImgURL.toString('base64') %>" alt="Blog Cover Image" class="w-full h-full object-cover">
         </div>
 
         <div class="prose prose-lg max-w-none mb-12">

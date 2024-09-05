@@ -11,7 +11,7 @@ const blogSchema  =  new Schema({
         // required: true,
     },
     coverImgURL: {
-        type: String,
+        type: Buffer,
 
     },
     createdBy:{

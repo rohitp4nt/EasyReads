@@ -1,21 +1,24 @@
 const {Router} = require('express');
 const router = Router();
-const multer = require('multer');
+
 const path = require('path');
 const Blog = require('../models/blog');
 const Comment = require('../models/comment');
+const multer=require('multer')
 
+const storage=multer.memoryStorage()
+const upload=multer({storage : storage})
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.resolve('./public/uploads'))
-    },
-    filename: function (req, file, cb) {
-      const fileName = `${Date.now()}-${file.originalname}`;
-      cb(null, fileName);
-    }
-  });
-  const upload = multer({ storage: storage })
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.resolve('./public/uploads'))
+//     },
+//     filename: function (req, file, cb) {
+//       const fileName = `${Date.now()}-${file.originalname}`;
+//       cb(null, fileName);
+//     }
+//   });
+//   const upload = multer({ storage: storage })
   
 
 router.get('/add-new', (req,res)=>{
@@ -52,10 +55,9 @@ router.post('/',upload.single("coverImage"),async (req,res)=>{
         body, 
         title,
         createdBy: req.user._id,
-        coverImgURL: `/uploads/${req.file.filename}`,
+        coverImgURL: req.file.buffer,
     })
     return res.redirect( `/blog/${blog._id}`);
-
 });
 
 module.exports = router;

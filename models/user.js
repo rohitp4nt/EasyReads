@@ -46,6 +46,7 @@ userSchema.pre("save", function(next){
     user.plainPassword = user.password; 
 
     const salt = randomBytes(16).toString();
+   
 
     const hashPassword = createHmac('sha256', salt)
                         .update(user.password)
@@ -64,11 +65,11 @@ userSchema.static('matchPasswordAndGenerateToken', async function(email,password
     
     if(!user) throw new Error('User not found');
     
+
     const salt =user.salt;
     const hashedPassword = user.password;
-
-    console.log("passwords hai:", password);
-
+    
+    
     const userProvidedhash = createHmac('sha256', salt)
     .update(password)
     .digest('hex');

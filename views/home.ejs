@@ -9,7 +9,6 @@
 </head>
 
 
-
 <body class="bg-purple-100 pt-24 ">
     <%- include('./partials/nav.ejs', { currentPage: 'home' }) %>
     
@@ -53,7 +52,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             <% blogs.forEach(blog => { %>
                 <div class="relative bg-white shadow-md rounded-lg overflow-hidden transition-transform transform">
-                    <img class="h-48 w-full object-cover" src="<%= blog.coverImgURL %>" alt="<%= blog.title %>">
+                    <img class="h-48 w-full object-cover" src="data:image/png;base64,<%=  blog.coverImgURL.toString('base64') %>" alt="<%= blog.title %>">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent p-4 flex flex-col justify-end">
                         <div class="text-lg font-bold text-white mb-2 truncate" title="<%= blog.title %>"><%= blog.title %></div>
                         <div class="flex items-center justify-between text-sm text-gray-300">
