@@ -9,6 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "postcss public/styles.css -o public/output.css",
     "style": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "homepage": "https://<your-username>.github.io/<your-repo-name>"
+
   },
   "author": "",
   "license": "ISC",
